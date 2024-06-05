@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Mission</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="add-mission.js"></script>
+</head>
+<body>
+    <h1>Add New Mission</h1>
+    <form id="add-mission-form">
+        <label>
+            Mission Name:
+            <input type="text" id="mission-name" required>
+        </label>
+        <br>
+        <label>
+            Mission Details:
+            <textarea id="mission-details" required></textarea>
+        </label>
+        <br>
+        <label>
+            Before Image:
+            <input type="file" id="before-image" required>
+        </label>
+        <br>
+        <button type="submit">Add Mission</button>
+    </form>
+</body>
+</html>
