@@ -1,24 +1,237 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
-}
-h1 {
-    color: #333;
-}
-ul {
-    list-style-type: none;
+    background-color: #f4f4f4;
+    margin: 0;
     padding: 0;
 }
-li {
-    margin: 10px 0;
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 20px;
 }
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.mission-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.mission-list li {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    transition: background-color 0.3s;
+}
+
+.mission-list h2 {
+    margin: 0 0 10px;
+    font-size: 1.5em;
+}
+
+.mission-list p {
+    margin: 0 0 10px;
+    color: #666;
+}
+
+.mission-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
 button {
     padding: 10px 20px;
     background-color: #007BFF;
     color: white;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
+    margin: 5px;
 }
+
 button:hover {
     background-color: #0056b3;
+}
+
+.add-mission-button {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    font-size: 1em;
+}
+
+.status-button {
+    width: 100%;
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+.close {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.delete-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    color: #ff0000;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    color: #b30000;
+}
+
+/* Add Mission Form */
+.mission-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.mission-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.mission-form input[type="text"],
+.mission-form textarea,
+.mission-form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.mission-form textarea {
+    height: 100px;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #218838;
+}
+
+/* Modal Styles */
+#statusModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+#statusModalContent {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+#statusModalContent h2 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #333;
+}
+
+#statusModalContent button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+/* 상태 버튼 설정 */
+#statusComplete {
+    background-color: #28a745;
+    color: white;
+}
+
+#statusComplete:hover {
+    background-color: #218838;
+}
+
+#statusHalfway {
+    background-color: #ffc107;
+    color: white;
+}
+
+#statusHalfway:hover {
+    background-color: #e0a800;
+}
+
+#statusNotDone { /* 'Not Done' 상태 버튼 설정 */
+    background-color: #dc3545;
+    color: white;
+}
+
+#statusNotDone:hover {
+    background-color: #c82333;
+}
+
+/* 상태에 따른 배경색 설정 */
+.mission-item.complete {
+    background-color: #d4edda;
+}
+
+.mission-item.halfway {
+    background-color: #fff3cd;
+}
+
+.mission-item.not-done { /* 'Not Done' 상태 배경색 설정 */
+    background-color: #f8d7da;
 }

@@ -3,14 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Planner</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Mission Tracker</title>
+    <link rel="stylesheet" href="styles.css"> <!-- 스타일 시트 추가 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="main.js"></script>
+    <script src="main.js" defer></script> <!-- JS 파일 -->
+    <style>
+        /* 모달을 화면 중앙에 표시하고 배경을 반투명하게 만듭니다. */
+        #statusModal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        #statusModalContent {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>Study Missions</h1>
-    <ul id="mission-list"></ul>
-    <button id="add-mission-button">Add Mission</button>
+    <div class="container">
+        <h1>Mission Tracker</h1>
+        <ul id="mission-list" class="mission-list"></ul>
+        <button id="add-mission-button" class="add-mission-button">Add Mission</button>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="statusModal">
+        <div id="statusModalContent">
+            <span class="close">&times;</span>
+            <h2>Update Mission Status</h2>
+            <button id="statusComplete" class="status-button">Complete</button>
+            <button id="statusHalfway" class="status-button">Halfway</button>
+            <button id="statusNotDone" class="status-button">Not Done</button>
+        </div>
+    </div>
 </body>
 </html>

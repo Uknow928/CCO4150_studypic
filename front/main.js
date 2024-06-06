@@ -4,13 +4,13 @@ $(document).ready(function () {
 
     missions.forEach((mission, index) => {
         const missionItem = $(`
-            <li>
+            <li class="mission-item ${mission.status.toLowerCase().replace(" ", "-")}">
                 <h2>${mission.name}</h2>
                 <p>${mission.details}</p>
                 <img class="mission-image" src="${mission.beforeImage}" alt="Before ${mission.name}">
                 <input type="file" class="after-image-upload" id="after-image-${index}" data-index="${index}" style="display: none;">
                 <button class="upload-after-button" data-index="${index}">Upload After Photo</button>
-                <button class="delete-button" data-index="${index}">Delete</button>
+                <button class="delete-button" data-index="${index}">&times;</button>
                 <p>Status: ${mission.status}</p>
             </li>
         `);
@@ -59,18 +59,19 @@ $(document).ready(function () {
                 formData.append('after', afterImageFile);
 
                 $.ajax({
-                    url: 'https://287e-1-235-77-88.ngrok-free.app/upload',
+                    url: 'https://f000-1-235-77-88.ngrok-free.app/upload',
                     type: 'POST',
                     data: formData,
                     contentType: false,
                     processData: false,
                     success: function (data) {
-                        console.log(`Upload success:`, data);
+                        console.log(`Upload success:`, data);                
+                        console.log('Before Text:', data.before_text);
+                        console.log('After Text:', data.after_text);
+
                         if (data.result === 'changed') {
-                            const userResponse = prompt('Mark as finished (circle), halfway (triangle), or not done (x)?');
-                            mission.status = userResponse;
-                            localStorage.setItem('missions', JSON.stringify(missions));
-                            location.reload();
+                            // Show modal with buttons
+                            $('#statusModal').data('index', index).show();
                         } else {
                             alert('No significant changes detected.');
                         }
@@ -89,6 +90,38 @@ $(document).ready(function () {
         localStorage.setItem('missions', JSON.stringify(missions));
         location.reload();
     }
+
+    // Handle status update buttons
+    $('#statusComplete').click(function() {
+        updateMissionStatus('Complete');
+    });
+
+    $('#statusHalfway').click(function() {
+        updateMissionStatus('Halfway');
+    });
+
+    $('#statusNotDone').click(function() {
+        updateMissionStatus('Not Done');
+    });
+
+    function updateMissionStatus(status) {
+        const index = $('#statusModal').data('index');
+        const missions = JSON.parse(localStorage.getItem('missions')) || [];
+        const mission = missions[index];
+        
+        if (mission) {
+            mission.status = status;
+            localStorage.setItem('missions', JSON.stringify(missions));
+            location.reload();
+        }
+
+        $('#statusModal').hide(); // Hide modal after status update
+    }
+
+    // Close modal when clicking on <span> (x)
+    $('.close').click(function() {
+        $('#statusModal').hide();
+    });
 
     // Resize images after rendering
     $('.mission-image').css('max-width', '200px'); // Adjust the max width as needed

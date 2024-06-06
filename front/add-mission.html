@@ -6,27 +6,23 @@
     <title>Add Mission</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="add-mission.js"></script>
+    <script src="add-mission.js" defer></script>
 </head>
 <body>
-    <h1>Add New Mission</h1>
-    <form id="add-mission-form">
-        <label>
-            Mission Name:
+    <div class="container">
+        <h1>Add New Mission</h1>
+        <form id="add-mission-form" class="mission-form">
+            <label for="mission-name">Mission Name:</label>
             <input type="text" id="mission-name" required>
-        </label>
-        <br>
-        <label>
-            Mission Details:
+
+            <label for="mission-details">Mission Details:</label>
             <textarea id="mission-details" required></textarea>
-        </label>
-        <br>
-        <label>
-            Before Image:
+
+            <label for="before-image">Before Image:</label>
             <input type="file" id="before-image" required>
-        </label>
-        <br>
-        <button type="submit">Add Mission</button>
-    </form>
+
+            <button type="submit" class="submit-button">Add Mission</button>
+        </form>
+    </div>
 </body>
 </html>
